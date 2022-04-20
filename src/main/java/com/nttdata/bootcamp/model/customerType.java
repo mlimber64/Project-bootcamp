@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Document
+@Document(collection = "customerType")
 public class customerType {
 	
 	@Id

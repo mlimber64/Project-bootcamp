@@ -12,12 +12,14 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Document
+@Document(collection =  "accountType")
 public class accountType {
 	
 	@Id
-	private long id;
+	private long _id;
 	@Field
 	private String description;
+	@Field
+	private String codigo;
 
 }

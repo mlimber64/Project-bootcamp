@@ -3,6 +3,7 @@ package com.nttdata.bootcamp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +16,16 @@ import com.nttdata.bootcamp.service.accountService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/api/account")
 public class accountController {
-	
+//	
+//	@GetMapping("/saludos")
+//	public String saludo() {
+//		return "Hola";
+//	}
+//	
 	@Autowired
 	private accountService serviceAccount;
 	
@@ -37,6 +44,7 @@ public class accountController {
 		return new ResponseEntity<Mono<account>>(serviceAccount.update(account),HttpStatus.OK);
 	}
 	
+	@DeleteMapping("/delete")
 	public ResponseEntity<Mono<Void>> deleteAccount(@RequestBody account account){
 		return new ResponseEntity<Mono<Void>>(serviceAccount.delete(account),HttpStatus.OK);
 	}
