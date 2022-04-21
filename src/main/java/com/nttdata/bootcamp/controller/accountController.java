@@ -20,14 +20,16 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/account")
 public class accountController {
-//	
-//	@GetMapping("/saludos")
-//	public String saludo() {
-//		return "Hola";
-//	}
-//	
+	
+
 	@Autowired
 	private accountService serviceAccount;
+	
+	@GetMapping("/saludos")
+	public String saludo() {
+		return "Hola";
+	}
+	
 	
 	@GetMapping("/findAll")
 	public ResponseEntity<Flux<account>> findAllAccount(){
