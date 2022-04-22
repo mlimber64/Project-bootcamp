@@ -11,24 +11,25 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Document
+@Document(collection = "account")
 public class account {
 
 	@Id
-	private long id;
-	@Field
+	@Field("_id")
+	private String id;
+	@Field("idType")
 	private int idType;
-	@Field
+	@Field("idCustomer")
 	private int idCustomer;
-	@Field
+	@Field("number")
 	private int number;
-	@Field
+	@Field("balance")
 	private double balance;
-	@Field
+	@Field("movement")
 	private int movement;
-	@Field
+	@Field("maintenance")
 	private double maintenance;
-	@Field
+	@Field("active")
 	private int active;
 
 }
