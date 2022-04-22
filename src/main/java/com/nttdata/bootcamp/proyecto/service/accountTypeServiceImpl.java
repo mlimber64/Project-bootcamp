@@ -1,10 +1,11 @@
-package com.nttdata.bootcamp.service;
+package com.nttdata.bootcamp.proyecto.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nttdata.bootcamp.model.accountType;
+import com.nttdata.bootcamp.proyecto.model.accountType;
+import com.nttdata.bootcamp.proyecto.repository.accountTypeRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,9 +15,8 @@ import reactor.core.publisher.Mono;
 public class accountTypeServiceImpl implements accountTypeService{
 	
 	@Autowired
-	private accountTypeService repositoryAccountType;
+	private accountTypeRepository repositoryAccountType;
 
-	@Override
 	public Flux<accountType> findAll() {
 		return repositoryAccountType.findAll();
 	}

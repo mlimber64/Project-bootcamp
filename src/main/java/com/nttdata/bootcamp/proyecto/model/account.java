@@ -1,4 +1,4 @@
-package com.nttdata.bootcamp.model;
+package com.nttdata.bootcamp.proyecto.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,27 +8,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-
 @Data
 @Builder
 @AllArgsConstructor
-@Document(collection = "customer")
-public class customer {
-	
+@Document
+public class account {
+
 	@Id
 	private long id;
 	@Field
 	private int idType;
 	@Field
-	private String firstName;
+	private int idCustomer;
 	@Field
-	private String lastName;
+	private int number;
 	@Field
-	private int age;
+	private double balance;
 	@Field
-	private int numberPhone;
+	private int movement;
 	@Field
-	private String email;
+	private double maintenance;
 	@Field
 	private int active;
 

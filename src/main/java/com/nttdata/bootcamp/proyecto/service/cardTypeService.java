@@ -1,6 +1,6 @@
-package com.nttdata.bootcamp.service;
+package com.nttdata.bootcamp.proyecto.service;
 
-import com.nttdata.bootcamp.model.cardType;
+import com.nttdata.bootcamp.proyecto.model.cardType;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

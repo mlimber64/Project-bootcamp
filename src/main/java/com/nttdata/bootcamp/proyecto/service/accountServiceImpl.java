@@ -1,11 +1,11 @@
-package com.nttdata.bootcamp.service;
+package com.nttdata.bootcamp.proyecto.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nttdata.bootcamp.model.account;
-import com.nttdata.bootcamp.repository.accountRepository;
+import com.nttdata.bootcamp.proyecto.model.account;
+import com.nttdata.bootcamp.proyecto.repository.accountRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
