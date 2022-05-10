@@ -1,18 +1,21 @@
 package com.nttdata.bootcamp.proyecto.service;
 
+import org.springframework.stereotype.Service;
+
 import com.nttdata.bootcamp.proyecto.model.accountType;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public interface accountTypeService {
 	
-	public Flux<accountType> findAll();
+	 Flux<accountType> findAll();
 	
-	public Mono<accountType> save(accountType accountType);
+	 Mono<accountType> save(Mono<accountType> a);
 	
-	public Mono<accountType> update(accountType accountType);
+	 Mono<accountType> update(accountType accountType);
 	
-	public Mono<Void> delete(accountType accountType);
+	 Mono<accountType> delete(String id);
 
 }

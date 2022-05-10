@@ -18,12 +18,13 @@ public class accountTypeServiceImpl implements accountTypeService{
 	private accountTypeRepository repositoryAccountType;
 
 	public Flux<accountType> findAll() {
-		return repositoryAccountType.findAll();
+		return this.repositoryAccountType.findAll();
 	}
+	
 
 	@Override
-	public Mono<accountType> save(accountType accountType) {
-		return repositoryAccountType.save(accountType);
+	public Mono<accountType> save(Mono<accountType> a) {
+		return a.flatMap(repositoryAccountType::insert);
 	}
 
 	@Override
@@ -32,8 +33,12 @@ public class accountTypeServiceImpl implements accountTypeService{
 	}
 
 	@Override
-	public Mono<Void> delete(accountType accountType) {
-		return repositoryAccountType.delete(accountType);
+	public Mono<accountType> delete(String id) {
+		return repositoryAccountType.findById(id)
+				.flatMap(delete -> repositoryAccountType.delete(delete)
+						.then(Mono.just(delete)));
 	}
+
+
 
 }

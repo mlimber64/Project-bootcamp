@@ -1,25 +1,25 @@
 package com.nttdata.bootcamp.proyecto.model;
 
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 
 
+@Document(collection = "accountTypes")
 @Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
-@Document(collection = "accountType")
 public class accountType {
-	
+
 	@Id
-	@Field("_id")
-	private String id;
+	private String id = UUID.randomUUID().toString().substring(0,10);
 	@Field("description")
 	private String description;
 	
