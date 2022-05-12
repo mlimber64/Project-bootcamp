@@ -22,7 +22,7 @@ public class accountTypeServiceImpl implements accountTypeService{
 	}
 
 	@Override
-	public Mono<accountType> findByID(String id) {
+	public Mono<accountType> findAllById(String id) {
 		return repositoryType.findById(id);
 	}
 

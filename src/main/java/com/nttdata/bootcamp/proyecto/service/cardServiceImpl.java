@@ -22,7 +22,11 @@ public class cardServiceImpl implements cardService{
 		return repositoryCard.findAll();
 	}
 
-	
+	@Override
+	public Mono<card> findAllById(String id) {
+		return repositoryCard.findById(id);
+	}
+
 	@Override
 	public Mono<card> save(card c) {
 		return repositoryCard.save(c);
@@ -43,11 +47,6 @@ public class cardServiceImpl implements cardService{
 				.findById(id)
 				.flatMap(c -> repositoryCard.deleteById(c.getId()).thenReturn(c));
 	}
-
-
-
-
-
 
 
 }

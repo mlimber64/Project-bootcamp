@@ -21,6 +21,11 @@ public class cardTypeServiceImpl implements cardTypeService{
 	public Flux<cardType> findAll() {
 		return repositorycardType.findAll();
 	}
+	
+	@Override
+	public Mono<cardType> findAllById(String id) {
+		return repositorycardType.findById(id);
+	}
 
 	@Override
 	public Mono<cardType> save(cardType ct) {
@@ -43,7 +48,4 @@ public class cardTypeServiceImpl implements cardTypeService{
 				.findById(id)
 				.flatMap(c -> repositorycardType.deleteById(c.getId()).thenReturn(c));
 	}
-
-
-	
 }

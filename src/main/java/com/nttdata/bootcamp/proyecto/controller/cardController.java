@@ -3,15 +3,7 @@ package com.nttdata.bootcamp.proyecto.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nttdata.bootcamp.proyecto.model.card;
 import com.nttdata.bootcamp.proyecto.service.cardService;
@@ -31,20 +23,25 @@ public class cardController {
 		return serviceCard.findAll();
 	}
 	
+	@GetMapping("/card/{id}")
+	private Mono<card> findById(@PathVariable("id") String id){
+		return serviceCard.findAllById(id);
+	}
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	private Mono<card> save(@RequestBody card c){
 		return serviceCard.save(c);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/card/{id}")
 	private Mono<ResponseEntity<card>> update(@PathVariable("id") String id,@RequestBody card c){
 		return serviceCard.update(id, c)
 				.flatMap(cards -> Mono.just(ResponseEntity.ok(cards)))
 				.switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/card/{id}")
 	private Mono<ResponseEntity<card>> delete(@PathVariable("id") String id){
 		return serviceCard.delete(id)
 				.flatMap(cards -> Mono.just(ResponseEntity.ok(cards)))

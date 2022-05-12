@@ -12,6 +12,8 @@ public interface cardService {
 	
 	Flux<card> findAll();
 	
+	Mono<card> findAllById(String id);
+	
 	Mono<card> save(card c);
 	
 	Mono<card> update(String id ,card c);

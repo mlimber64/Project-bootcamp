@@ -3,18 +3,11 @@ package com.nttdata.bootcamp.proyecto.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nttdata.bootcamp.proyecto.model.account;
 import com.nttdata.bootcamp.proyecto.service.accountService;
+
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -31,20 +24,26 @@ public class accountController {
 		return serviceAccount.findAll();
 	}
 	
+	@GetMapping("/account/{id}")
+	private Mono<account> findById(@PathVariable("id") String id){
+		return serviceAccount.findAllById(id);
+	}
+
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	private Mono<account> save(@RequestBody account a){
 		return serviceAccount.save(a);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/account/{id}")
 	private Mono<ResponseEntity<account>> update(@PathVariable("id") String id, @RequestBody account a){
 		return serviceAccount.update(id, a)
 				.flatMap(acounts -> Mono.just(ResponseEntity.ok(acounts)))
 				.switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/account/{id}")
 	private Mono<ResponseEntity<account>> delete(@PathVariable("id") String id){
 		return serviceAccount.delete(id)
 				.flatMap(acount -> Mono.just(ResponseEntity.ok(acount)))
