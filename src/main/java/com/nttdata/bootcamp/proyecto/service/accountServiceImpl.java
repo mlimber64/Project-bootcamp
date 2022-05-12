@@ -39,9 +39,9 @@ public class accountServiceImpl implements accountService{
 
 	@Override
 	public Mono<account> delete(String id) {
-		return repositoryAccount.findById(id)
-				.flatMap(delete -> repositoryAccount.delete(delete)
-						.then(Mono.just(delete)));
+		return repositoryAccount
+				.findById(id)
+				.flatMap(a -> repositoryAccount.deleteById(a.getId()).thenReturn(a));
 	}
 
 }

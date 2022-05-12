@@ -39,9 +39,9 @@ public class cardTypeServiceImpl implements cardTypeService{
 
 	@Override
 	public Mono<cardType> delete(String id) {
-		return repositorycardType.findById(id)
-				.flatMap(delete -> repositorycardType.delete(delete)
-						.then(Mono.just(delete)));
+		return repositorycardType
+				.findById(id)
+				.flatMap(c -> repositorycardType.deleteById(c.getId()).thenReturn(c));
 	}
 
 

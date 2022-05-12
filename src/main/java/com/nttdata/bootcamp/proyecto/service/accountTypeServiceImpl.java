@@ -15,21 +15,25 @@ import reactor.core.publisher.Mono;
 public class accountTypeServiceImpl implements accountTypeService{
 	
 	@Autowired
-	private accountTypeRepository repositoryAccountType;
+	private accountTypeRepository repositoryType;
 
 	public Flux<accountType> findAll() {
-		return this.repositoryAccountType.findAll();
+		return this.repositoryType.findAll();
 	}
-	
+
+	@Override
+	public Mono<accountType> findByID(String id) {
+		return repositoryType.findById(id);
+	}
 
 	@Override
 	public Mono<accountType> save(accountType at) {
-		return repositoryAccountType.save(at);
+		return repositoryType.save(at);
 	}
 
 	@Override
 	public Mono<accountType> update(String id ,accountType at) {
-		return repositoryAccountType.findById(id)
+		return repositoryType.findById(id)
 				.flatMap(acc -> {
 					at.setId(id);
 					return save(at);
@@ -41,9 +45,8 @@ public class accountTypeServiceImpl implements accountTypeService{
 
 	@Override
 	public Mono<accountType> delete(String id) {
-		return repositoryAccountType.findById(id)
-				.flatMap(delete -> repositoryAccountType.delete(delete)
-						.then(Mono.just(delete)));
+		return repositoryType
+				.findById(id)
+				.flatMap(a -> repositoryType.deleteById(a.getId()).thenReturn(a));
 	}
-
 }
