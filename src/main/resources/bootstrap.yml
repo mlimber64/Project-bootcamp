@@ -6,22 +6,3 @@ spring:
       host: localhost
       port: 27017
       database: proyecto
-      #username: xyz
-      #password: xyz
-
-##
-#server.port=8081
-#spring.application.name=proyecto
-#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-
-#Metricas
-#management.endpoints.web.exposure,include=*
-#management.endpoints.shutdown.enabled=true
- 
-#spring.data.mongodb.uri=mongodb://localhost:27017/proyecto
-#MongoDB
-#spring.data.mongodb.database=proyecto
-#spring.data.mongodb.host=localhost
-#spring.data.mongodb.port=27017
-#spring.data.mongodb.authentication-database=admin
-#spring.data.mongodb.database=proyecto

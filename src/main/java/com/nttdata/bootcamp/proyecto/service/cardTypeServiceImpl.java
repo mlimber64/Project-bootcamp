@@ -23,18 +23,27 @@ public class cardTypeServiceImpl implements cardTypeService{
 	}
 
 	@Override
-	public Mono<cardType> save(cardType cardType) {
-		return repositorycardType.save(cardType);
+	public Mono<cardType> save(cardType ct) {
+		return repositorycardType.save(ct);
 	}
 
 	@Override
-	public Mono<cardType> update(cardType cardType) {
-		return repositorycardType.save(cardType);
+	public Mono<cardType> update(String id, cardType ct) {
+		return repositorycardType.findById(id)
+				.flatMap(at -> {
+					ct.setId(id);
+					return save(ct);
+				})
+				.switchIfEmpty(Mono.empty());
 	}
 
 	@Override
-	public Mono<Void> delete(cardType cardType) {
-		return repositorycardType.delete(cardType);
+	public Mono<cardType> delete(String id) {
+		return repositorycardType.findById(id)
+				.flatMap(delete -> repositorycardType.delete(delete)
+						.then(Mono.just(delete)));
 	}
 
+
+	
 }

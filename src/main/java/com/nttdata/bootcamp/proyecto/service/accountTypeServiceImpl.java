@@ -23,13 +23,20 @@ public class accountTypeServiceImpl implements accountTypeService{
 	
 
 	@Override
-	public Mono<accountType> save(Mono<accountType> a) {
-		return a.flatMap(repositoryAccountType::insert);
+	public Mono<accountType> save(accountType at) {
+		return repositoryAccountType.save(at);
 	}
 
 	@Override
-	public Mono<accountType> update(accountType accountType) {
-		return repositoryAccountType.save(accountType);
+	public Mono<accountType> update(String id ,accountType at) {
+		return repositoryAccountType.findById(id)
+				.flatMap(acc -> {
+					at.setId(id);
+					return save(at);
+					
+				})
+				.switchIfEmpty(Mono.empty());
+				
 	}
 
 	@Override
@@ -38,7 +45,5 @@ public class accountTypeServiceImpl implements accountTypeService{
 				.flatMap(delete -> repositoryAccountType.delete(delete)
 						.then(Mono.just(delete)));
 	}
-
-
 
 }

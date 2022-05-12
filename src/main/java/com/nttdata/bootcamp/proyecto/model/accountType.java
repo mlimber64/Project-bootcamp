@@ -1,27 +1,50 @@
 package com.nttdata.bootcamp.proyecto.model;
 
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 
-@Document(collection = "accountTypes")
-@Data
+
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Document(collection = "accountTypes")
 public class accountType {
 
 	@Id
-	private String id = UUID.randomUUID().toString().substring(0,10);
+	@Field("id")
+	private String id;
 	@Field("description")
 	private String description;
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+
+	
+
+	
 	
 
 }

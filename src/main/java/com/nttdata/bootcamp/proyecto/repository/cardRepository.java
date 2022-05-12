@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.nttdata.bootcamp.proyecto.model.card;
 
 @Repository
-public interface cardRepository extends ReactiveMongoRepository<card, Long>{
+public interface cardRepository extends ReactiveMongoRepository<card, String>{
 
 }

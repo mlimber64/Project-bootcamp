@@ -22,21 +22,32 @@ public class cardServiceImpl implements cardService{
 		return repositoryCard.findAll();
 	}
 
+	
 	@Override
-	public Mono<card> save(card card) {
-		return repositoryCard.save(card);
+	public Mono<card> save(card c) {
+		return repositoryCard.save(c);
+	}
+	@Override
+	public Mono<card> update(String id, card c) {
+		return repositoryCard.findById(id)
+				.flatMap(ca -> {
+					c.setId(id);
+					return save(c);
+				})
+				.switchIfEmpty(Mono.empty());
 	}
 
 	@Override
-	public Mono<card> update(card card) {
-		return repositoryCard.save(card);
+	public Mono<card> delete(String id) {
+		return repositoryCard.findById(id)
+				.flatMap(delete -> repositoryCard.delete(delete)
+						.then(Mono.just(delete)));
 	}
 
-	@Override
-	public Mono<Void> delete(card card) {
-		return repositoryCard.delete(card);
-	}
-	
-	
+
+
+
+
+
 
 }

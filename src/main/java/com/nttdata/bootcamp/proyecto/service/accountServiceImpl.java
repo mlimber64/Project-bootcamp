@@ -23,18 +23,25 @@ public class accountServiceImpl implements accountService{
 	}
 
 	@Override
-	public Mono<account> save(account account) {
-		return repositoryAccount.save(account);
+	public Mono<account> save(account a) {
+		return repositoryAccount.save(a);
 	}
 
 	@Override
-	public Mono<account> update(account account) {
-		return repositoryAccount.save(account);
+	public Mono<account> update(String id ,account a) {
+		return repositoryAccount.findById(id)
+				.flatMap(ac -> {
+					a.setId(id);
+					return save(a);
+				})
+				.switchIfEmpty(Mono.empty());
 	}
 
 	@Override
-	public Mono<Void> delete(account account) {
-		return repositoryAccount.delete(account);
+	public Mono<account> delete(String id) {
+		return repositoryAccount.findById(id)
+				.flatMap(delete -> repositoryAccount.delete(delete)
+						.then(Mono.just(delete)));
 	}
 
 }

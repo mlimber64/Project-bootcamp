@@ -12,9 +12,9 @@ public interface accountTypeService {
 	
 	 Flux<accountType> findAll();
 	
-	 Mono<accountType> save(Mono<accountType> a);
+	 Mono<accountType> save(accountType at);
 	
-	 Mono<accountType> update(accountType accountType);
+	 Mono<accountType> update(String id , accountType at);
 	
 	 Mono<accountType> delete(String id);
 

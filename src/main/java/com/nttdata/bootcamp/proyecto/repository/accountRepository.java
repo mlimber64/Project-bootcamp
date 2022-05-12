@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.nttdata.bootcamp.proyecto.model.account;
 
 @Repository
-public interface accountRepository extends ReactiveMongoRepository<account, Long>{
+public interface accountRepository extends ReactiveMongoRepository<account, String>{
 
 }

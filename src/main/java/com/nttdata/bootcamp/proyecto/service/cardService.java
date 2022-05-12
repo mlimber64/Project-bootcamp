@@ -1,18 +1,21 @@
 package com.nttdata.bootcamp.proyecto.service;
 
+import org.springframework.stereotype.Service;
+
 import com.nttdata.bootcamp.proyecto.model.card;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public interface cardService {
 	
-	public Flux<card> findAll();
+	Flux<card> findAll();
 	
-	public Mono<card> save(card card);
+	Mono<card> save(card c);
 	
-	public Mono<card> update(card card);
+	Mono<card> update(String id ,card c);
 	
-	public Mono<Void> delete(card card);
+	Mono<card> delete(String id);
 
 }
